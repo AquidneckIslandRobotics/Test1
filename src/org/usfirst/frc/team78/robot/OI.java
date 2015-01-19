@@ -1,5 +1,6 @@
 package org.usfirst.frc.team78.robot;
 
+import org.usfirst.frc.team78.robot.commands.CODControl;
 import org.usfirst.frc.team78.robot.commands.DriveStraightCorrection;
 import org.usfirst.frc.team78.robot.commands.DriveStraightWithJoysticks;
 import org.usfirst.frc.team78.robot.commands.ToggleSol1;
@@ -30,6 +31,7 @@ public class OI {
 	public Button straight;
 	public Button driveForever;
 	public Button stupidButton;
+	public Button codButton;
 	
 	
 	public Joystick manipulatorStick;
@@ -63,6 +65,9 @@ public OI(){
 		
 		toggleSol3 = new JoystickButton(manipulatorStick, 3);
 		toggleSol3.whenPressed(new ToggleSol3());
+		
+		codButton = new JoystickButton(driverStick, 8);
+		codButton.whileHeld(new CODControl());
 		
 		
 	}
