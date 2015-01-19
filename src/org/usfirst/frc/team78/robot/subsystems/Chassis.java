@@ -27,9 +27,10 @@ public class Chassis extends Subsystem
 	RobotDrive drive = new RobotDrive(leftDrive1, leftDrive2, rightDrive1, rightDrive2);
 	
 	//sensors
-	
 	Gyro gyro = new Gyro(RobotMap.GYRO);
 	
+	
+	//variables
 	double error;
 	double P = (.0068);
 	double I = (.00004);
@@ -41,6 +42,10 @@ public class Chassis extends Subsystem
 	final double ERROR_THRESHOLD = 2.5;
 	
 	double C = (0.01);
+	
+	double leftDriveValue;
+	double rightDriveValue;
+	double hDriveValue;
 	
     public void initDefaultCommand() 
     {
@@ -86,6 +91,23 @@ public class Chassis extends Subsystem
     public void stopDrive()
     {
     	drive.tankDrive(0, 0);
+    }
+    
+    public void codControl(){
+    	//left stick = getx, gety
+    	//right stick = get throttle, get twist
+    	
+    	leftDriveValue = (Robot.oi.driverStick.getY() + -Robot.oi.driverStick.getTwist());
+    	rightDriveValue = (Robot.oi.driverStick.getY() - -Robot.oi.driverStick.getTwist());
+    	hDriveValue = Robot.oi.driverStick.getX();
+    	
+    	
+    	leftDrive1.set(leftDriveValue);
+    	leftDrive2.set(leftDriveValue);
+    	rightDrive1.set(-rightDriveValue);
+    	rightDrive2.set(-rightDriveValue);
+    	hDrive.set(hDriveValue);
+    
     }
     
     //___________________________________________________________________________________________________________________________________________________
