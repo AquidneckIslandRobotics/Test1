@@ -18,13 +18,13 @@ public class DriveStraightCorrection extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.chassis.setSpeed(0.5, 0.5);
+    	Robot.chassis.setSpeed(0.4, 0.4);
     	Robot.chassis.resetTurnData();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassis.correctSteering(0.5);
+    	Robot.chassis.correctSteering(0.4);
     }
 
     // Make this return true when this Command no longer needs to run execute()

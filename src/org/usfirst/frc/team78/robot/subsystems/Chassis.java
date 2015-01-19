@@ -6,11 +6,13 @@ import org.usfirst.frc.team78.robot.commands.DriveWithJoysticks;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -28,6 +30,8 @@ public class Chassis extends Subsystem
 	
 	//sensors
 	Gyro gyro = new Gyro(RobotMap.GYRO);
+	
+	Encoder enc = new Encoder(0, 1);
 	
 	
 	//variables
@@ -65,6 +69,9 @@ public class Chassis extends Subsystem
     	double right = -Robot.oi.getDriverRightStick();
     	drive.setSafetyEnabled(false);
     	drive.tankDrive(left, right);
+    	
+    	SmartDashboard.putNumber("EncoderVal", enc.getRaw());
+    	
    
     }//end driveWithJoysticks
     
